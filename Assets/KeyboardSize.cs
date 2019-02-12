@@ -4,18 +4,29 @@ using UnityEngine;
 
 public class KeyboardSize : MonoBehaviour
 {
+    float m_distanceTraveled = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 boxSize = GetComponent<Collider>().bounds.size;
-        Debug.Log(boxSize.x);
-        Debug.Log(boxSize.y);
-        Debug.Log(boxSize.z);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.RightWindows))
+        {
+            Vector3 oldPosition = transform.position;
+            transform.Translate(0, 2 * Time.deltaTime, 0);
+            m_distanceTraveled += Vector3.Distance(oldPosition, transform.position);
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightWindows))
+        {
+            Vector3 oldPosition = transform.position;
+            transform.Translate(0, -2 * Time.deltaTime, 0);
+            m_distanceTraveled += Vector3.Distance(oldPosition, transform.position);
+        }
     }
 }

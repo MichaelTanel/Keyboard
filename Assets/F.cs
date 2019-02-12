@@ -1,0 +1,39 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class F : MonoBehaviour
+{
+    bool isMoved = false;
+    float m_distanceTraveled = 0f;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            isMoved = false;
+            Vector3 oldPosition = transform.position;
+            transform.Translate(0, 2 * Time.deltaTime, 0);
+            m_distanceTraveled += Vector3.Distance(oldPosition, transform.position);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+
+            if (!isMoved)
+            {
+                isMoved = true;
+                Vector3 oldPosition = transform.position;
+                transform.Translate(0, -2 * Time.deltaTime, 0);
+                m_distanceTraveled += Vector3.Distance(oldPosition, transform.position);
+            }
+        }
+    }
+}
